@@ -1,17 +1,18 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
+import java.util.Scanner;
 
 public class UserInputAndHandlingTest {
 
     UserInputAndHandling u = new UserInputAndHandling();
+    Path testFil2 = Paths.get("Test/testMembers.txt");
 
     @org.junit.jupiter.api.Test
     void compareDateTest() {
@@ -68,6 +69,16 @@ public class UserInputAndHandlingTest {
             String s1 = u.printToFileIfActive(print,test.get(0));
             String s2 = test.get(0).getIdNumber()+", "+test.get(0).getName()+" tränade datum: "+LocalDate.now();
             Assertions.assertEquals(s1, s2);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    @Test
+    void saveMembersInList()  {
+        List<Member> test = new ArrayList<>();
+        try (Scanner scanner = new Scanner(testFil2)){
+            Assertions.assertEquals(8, u.saveMembersInList(scanner, test).size());
+            Assertions.assertNotEquals(9, u.saveMembersInList(scanner, test).size());
         }catch(Exception e){
             e.printStackTrace();
         }

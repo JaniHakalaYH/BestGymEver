@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class UserInputAndHandling {
 
@@ -37,6 +37,20 @@ public class UserInputAndHandling {
                 System.exit(0);
             }
         }
+    }
+    public List<Member> saveMembersInList(Scanner scan, List<Member> member) {
+        String string1 = "";
+        String string2 = "";
+        while(scan.hasNextLine()){
+            if(scan.hasNext()){
+                string1 = scan.nextLine();
+            }
+            if(scan.hasNext()){
+                string2 = scan.nextLine();
+            }
+            member.add(new Member(getIdNumberFromFile(string1),getNameFromFile(string1),getDateFromFile(string2)));
+        }
+        return member;
     }
     public boolean compareDate (String input) {
         LocalDate date1 = LocalDate.now().minusYears(1);

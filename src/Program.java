@@ -18,7 +18,7 @@ public class Program extends UserInputAndHandling{
             PrintWriter print = new PrintWriter(writer);
             Scanner scan = new Scanner(inFil)) {
 
-            saveMembersInList(scan);
+            saveMembersInList(scan, member);
             writeOutputToReceptionAndTrainer(print,  member);
 
         } catch (FileNotFoundException e) {
@@ -29,19 +29,6 @@ public class Program extends UserInputAndHandling{
             System.out.println("Något blev fel!");
             e.printStackTrace();
             System.exit(0);
-        }
-    }
-    public void saveMembersInList(Scanner scan) {
-        String string1 = "";
-        String string2 = "";
-        while(scan.hasNextLine()){
-            if(scan.hasNext()){
-                string1 = scan.nextLine();
-            }
-            if(scan.hasNext()){
-                string2 = scan.nextLine();
-            }
-            member.add(new Member(getIdNumberFromFile(string1),getNameFromFile(string1),getDateFromFile(string2)));
         }
     }
 }
